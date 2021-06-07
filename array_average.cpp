@@ -49,7 +49,7 @@ int main() {
             // random number generation
             std::random_device rseed;
             std::mt19937 rgen(rseed());
-            std::uniform_int_distribution<int> idist(0, 100);
+            std::uniform_int_distribution<int> idist(0, 50);
             randomNum = idist(rgen);
             array_2D[rowElement][columnElement] = randomNum;
             std::cout << randomNum << ", ";
