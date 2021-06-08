@@ -8,7 +8,7 @@
 #include <random>
 
 template<int rows, int columns>
-float AvOfNumbers(int (&array)[rows][columns]) {
+float AvgOfNumbers(int (&array)[rows][columns]) {
     // this function finds the average among the 2d list
     float total = 0;
     int counterRow = 0;
@@ -53,7 +53,7 @@ int main() {
     }
 
     // output
-    float average = AvOfNumbers(array);
+    float average = AvgOfNumbers(array);
     std::cout << "" << std::endl;
     std::cout << "The average of all the numbers is: " 
               << average << std::endl;
