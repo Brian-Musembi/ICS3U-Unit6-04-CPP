@@ -2,64 +2,59 @@
 //
 // Created by Brian Musembi
 // Created on June 2021
-// This program finds the smallest number of 10 random numbers
+// This program finds the average of ten random numbers
 
 #include <iostream>
 #include <random>
-#include <array>
-
 
 template<int rows, int columns>
-float average2D(float (&array_2D)[rows][columns]) {
-    // This program finds the smallest number
-
+float AvOfNumbers(int (&array)[rows][columns]) {
+    // this function finds the average among the 2d list
     float total = 0;
-    float numOfRows = sizeof(array_2D) / sizeof(array_2D[0]);
-    float numOfCols = sizeof(array_2D[0]) / sizeof(int);
+    int counterRow = 0;
+    int counterCol = 0;
+    float average;
 
-    // process
-    for (size_t rowElement = 0; rowElement < rows; ++rowElement) {
-        for (size_t columnElement = 0; columnElement < columns; ++columnElement)
-            total += array_2D[rowElement][columnElement];
+    for (int counterRow = 0; counterRow < rows; counterRow++) {
+        for (int counterCol = 0; counterCol < rows; counterCol++) {
+            total += array[counterRow][counterCol];
+        }
     }
-
-    float average = total / (numOfRows * numOfCols);
+    average = total / (rows * columns);
 
     return average;
 }
 
-
 int main() {
-    // This program prints 10 random integers and output
+    // this function generates random numbers and calls another function
 
-    std::cout << "This program prints a 2D Array and then finds the average "
-              << "of all numbers."
+    std::cout << "This program finds the average of ten random numbers"
               << std::endl;
     std::cout << "" << std::endl;
 
-    // variables
-    int randomNum;
-    const int rows = 4;
-    const int columns = 5;
-    float array_2D[rows][columns];
+    // declaration
+    const int rows = 4;  // constant
+    const int columns = 5;  // constant
+    int array[rows][columns];  // array
+    int singleNumber;  // variable
 
-    // creating 2D array
-    for (int rowElement = 0; rowElement < rows; rowElement++) {
-        for (int columnElement = 0; columnElement < columns; columnElement++) {
-            // random number generation
+    // process -- generate random numbers
+    for (int rowCounter = 0; rowCounter < rows; rowCounter++) {
+        std::cout;  // output
+        for (int colCounter = 0; colCounter < columns; colCounter++) {
             std::random_device rseed;
-            std::mt19937 rgen(rseed());
-            std::uniform_int_distribution<int> idist(0, 50);
-            randomNum = idist(rgen);
-            array_2D[rowElement][columnElement] = randomNum;
-            std::cout << randomNum << ", ";
+            std::mt19937 rgen(rseed());  // mersenne_twister
+            std::uniform_int_distribution<int> idist(0, 50);  // [1,100]
+            singleNumber = idist(rgen);
+            array[rowCounter][colCounter] = singleNumber;
+            std::cout << singleNumber << ", ";  // output
         }
-        std::cout << std::endl;
+    std::cout << std::endl;  // output
     }
 
-    float averageOfArray = average2D(array_2D);
-
+    // output
+    float average = AvOfNumbers(array);
     std::cout << "" << std::endl;
-    std::cout << "The average of all numbers is: " << averageOfArray
-              << std::endl;
+    std::cout << "The average of all the numbers is: " 
+              << average << std::endl;
 }
